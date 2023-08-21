@@ -110,24 +110,36 @@ def escenario3():
 
     print("Selecting Perfumes Hombre")
 
-    perfumeOptions = driver.find_element(By.XPATH, "//div[@id = 'CAT5020010']//ul[@class = 'm-desktop-subcategory-list']//li//a[text() = 'Perfumes Hombre']")
+    driver.get("https://www.liverpool.com.mx/tienda/perfumes-hombre/catst44258581")
 
 
+    showMoreBrands = driver.find_element(By.XPATH, "//a[@id = 'Marcas']")
+    showMoreBrands.click()
+    
     time.sleep(2)
 
-    perfumeOptions.click()
-    
-    
+    diorOption = driver.find_element(By.XPATH, "//input[@id = 'brand-DIOR']")
+    diorOption.click()
 
-    # option = perfumeOptions[0].find_elements(By.TAG_NAME,"li")
+    time.sleep(3)
 
-    # hombreOpt = option[1].text
-    # print(hombreOpt)
-    # print("Enter to the Perfumes Hombre section")
-    # option = perfumeOptions[1].find_element(By.XPATH, "//a[@class = 'a-desktop__subcategoryTitle subcategoryLevel-3']")
-    # print(option.text)
+    totalProducts = driver.find_element(By.XPATH, "//p[@class = 'a-plp-results-title']")
+    totalProductsAux =  re.sub('[^0-9]','',totalProducts.text)
 
-# escenario1("playstation")
-# escenario2("smart TV")
 
+    print("This is the total product count: " + totalProductsAux)
+
+
+
+
+print("----- 1st Test Case Begins -----")
+escenario1("playstation")
+print("----- 1st Test Case Ends -----")
+print("----- 2nd Test Case Begins -----")
+escenario2("smart TV")
+print("----- 2nd Test Case Ends -----")
+print("----- 3rd Test Case Begins -----")
 escenario3()
+print("----- 3rd Test Case Ends -----")
+
+driver.quit()
